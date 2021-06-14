@@ -1,7 +1,7 @@
 {% if comensales %}
     <ul>
     {% for comensal in comensales %}
-        <li><a href="{% url 'comensales:detail' comensal.id %}">{{ comensal.nombre }}</a></li>
+        <li><a href="{% url 'comensales:detail' comensal.id %}">{{ comensal }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
