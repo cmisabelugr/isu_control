@@ -1,0 +1,6 @@
+<h1>{{ comensal.nombre }}</h1>
+<ul>
+    {% for com in comensal.comida_set.all %}
+        <li> {{ com }} </li>
+    {% endfor %}
+</ul>
