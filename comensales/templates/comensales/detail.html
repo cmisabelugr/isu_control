@@ -1,4 +1,4 @@
-<h1>{{ comensal }}</h1>
+<h1>{{ comensal }}, {{ comensal.comida_set.all|length }} comidas actualmente</h1>
 <ul>
     {% for com in comensal.comida_set.all %}
         <li> {{ com }} </li>
