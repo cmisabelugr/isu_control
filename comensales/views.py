@@ -22,7 +22,34 @@ def detail(request, comensal_id):
     comen = get_object_or_404(Comensal, pk=comensal_id)
     return render(request, 'comensales/detail.html', {'comensal' : comen})
 
-
+@login_required(login_url='/admin/')
+def total(request):
+    comidas = Comida.objects.all().order_by('fecha')
+    fecha_ant = dateformat.format(timezone.localtime(Comida.objects.first().fecha), 'd/m/y')
+    claves = {
+        'Desayuno': 0,
+        'Brunch': 1,
+        'Almuerzo': 2,
+        'Merienda': 3,
+        'Cena': 4
+    }
+    dias = {}
+    x = [0, 0, 0, 0, 0, 0]
+    for comida in comidas:
+        fecha_nueva = dateformat.format(timezone.localtime(comida.fecha), 'd/m/y')
+        if fecha_ant != fecha_nueva:
+            x = [0, 0, 0, 0, 0, 0]
+            fecha_ant = fecha_nueva
+        
+        x[claves[comida.com]] += 1
+        x[5] += 1
+        dias[str(fecha_ant)] = x
+        fecha_ant = fecha_nueva
+        
+    dias[str(fecha_ant)] = x
+            
+    return render(request, 'comensales/total.html', {'dias' : dias})
+            
 
 def addComida(request, qr):
     CodigosFran = {

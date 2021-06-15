@@ -41,3 +41,5 @@ class ComidaActual(models.Model):
         choices=[(tag.value, tag.value) for tag in enumComidas],
         default = enumComidas.DE
     )
+    def __str__(self):
+        return "Comida actual: {}".format(com)
