@@ -62,6 +62,10 @@ def addComida(request, qr):
     
     if qr in CodigosFran.keys():
         ComAct = ComidaActual.objects.first()
+        
+        if ComAct is None:
+            ComAct = ComidaActual()
+
         ComAct.com = CodigosFran[qr].value
         ComAct.save()
     else:

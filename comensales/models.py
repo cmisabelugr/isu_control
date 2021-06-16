@@ -42,4 +42,4 @@ class ComidaActual(models.Model):
         default = enumComidas.DE
     )
     def __str__(self):
-        return "Comida actual: {}".format(com)
+        return "Comida actual: {}".format(self.com)
