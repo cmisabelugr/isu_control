@@ -68,6 +68,7 @@ def addComida(request, qr):
 
         ComAct.com = CodigosFran[qr].value
         ComAct.save()
+        return HttpResponse("{} guardad@ con éxito".format(ComAct.com), status=200)
     else:
         try:
             comen = Comensal.objects.get(codigo=qr)
@@ -78,4 +79,4 @@ def addComida(request, qr):
         nuevaCom = Comida(de_comensal=comen, com = ComidaActual.objects.first().com)
         nuevaCom.save()
         
-    return HttpResponse("Comida añadida con éxito", status=200)
+    return HttpResponse("{} añadid@ con éxito al comensal {}".format(ComidaActual.objects.first().com, comen), status=200)
