@@ -12,6 +12,7 @@ class enumComidas(Enum):
     AL = "Almuerzo"
     ME = "Merienda"
     CE = "Cena"
+    PA = "Pack"
 
 class Comensal(models.Model):
     codigo = models.CharField(max_length=200, default="0")
