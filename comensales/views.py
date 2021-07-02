@@ -137,4 +137,29 @@ def status(request):
     return JsonResponse(respuesta)
 
 def resumen_fran(request):
-    return total(request)
+    comidas = Comida.objects.all().order_by('fecha')
+    fecha_ant = dateformat.format(timezone.localtime(Comida.objects.first().fecha), 'd/m/y')
+    claves = {
+        'Desayuno': 0,
+        'Brunch': 1,
+        'Almuerzo': 2,
+        'Merienda': 3,
+        'Cena': 4,
+        'Pack': 5
+    }
+    dias = {}
+    x = [0]*(len(claves.keys())+1)
+    for comida in comidas:
+        fecha_nueva = dateformat.format(timezone.localtime(comida.fecha), 'd/m/y')
+        if fecha_ant != fecha_nueva:
+            x = [0]*(len(claves.keys())+1)
+            fecha_ant = fecha_nueva
+        
+        x[claves[comida.com]] += 1
+        x[len(claves.keys())] += 1
+        dias[str(fecha_ant)] = x
+        fecha_ant = fecha_nueva
+        
+    dias[str(fecha_ant)] = x
+            
+    return render(request, 'comensales/total.html', {'dias' : dias})
