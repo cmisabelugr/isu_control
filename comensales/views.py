@@ -91,7 +91,9 @@ def addComida(request):
         ComAct.save()
         respuesta = {
             'status':200,
-            'message': "{} guardada con exito".format(ComAct.com)
+            'message': "{} guardada con exito".format(ComAct.com),
+            'display_name' : "{}".format(ComAct.com),
+            'comidas_turno' : Comida.objects.filter(com=ComAct.com, fecha__gte=timezone.now().replace(hour=0, minute=0, second=0), fecha__lte=timezone.now().replace(hour=23, minute=59, second=59)).count()
             }
         return JsonResponse(respuesta)
     else:
