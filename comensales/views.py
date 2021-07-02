@@ -133,3 +133,6 @@ def status(request):
         'comida_activa' : comida_activa
     }
     return JsonResponse(respuesta)
+
+def resumen_fran(request):
+    return total(request)
