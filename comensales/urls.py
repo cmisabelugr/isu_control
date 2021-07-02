@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:comensal_id>/', views.detail, name='detail'),
     path('newcode/', views.addComida, name='nuevaComida'),
     path('status/', views.status, name='status'),
+    path('solofranpuedeentraraqui/', views.resumen_fran, name='resumen_fran'),
 ]
