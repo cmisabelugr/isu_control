@@ -12,4 +12,5 @@ urlpatterns = [
     path('newcode/', views.addComida, name='nuevaComida'),
     path('status/', views.status, name='status'),
     path('solofranpuedeentraraqui/', views.resumen_fran, name='resumen_fran'),
+    path('json_dump/', views.json_escaneos, name='json_dump'),
 ]

@@ -163,3 +163,8 @@ def resumen_fran(request):
     dias[str(fecha_ant)] = x
             
     return render(request, 'comensales/total.html', {'dias' : dias})
+
+def json_escaneos(request):
+    comidas = list(Comida.objects.values('de_comensal__codigo', 'com', 'fecha'))
+
+    return JsonResponse(comidas, safe=False)
